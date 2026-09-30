@@ -1,31 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Sep 28, 2026 at 09:39 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `barangay_service_hub`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `announcements`
---
 
 CREATE TABLE `announcements` (
   `id` int(11) NOT NULL,
@@ -36,20 +11,10 @@ CREATE TABLE `announcements` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `announcements`
---
-
 INSERT INTO `announcements` (`id`, `title`, `content`, `announcement_date`, `status`, `created_at`) VALUES
 (1, 'Barangay Assembly Meeting', 'The next barangay assembly meeting will be on September 28, 2025, 8:00 AM.', '2025-09-22', 'published', '2026-09-28 21:50:50'),
 (2, 'Updated Service Hours', 'The barangay hall will be open from 8:00 AM to 5:00 PM, Monday to Friday.', '2025-09-18', 'published', '2026-09-28 21:50:50'),
 (3, 'Community Clean-Up Drive', 'Join us for the monthly clean-up drive on September 20, 2025.', '2025-09-12', 'published', '2026-09-28 21:50:50');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `certificates`
---
 
 CREATE TABLE `certificates` (
   `id` int(11) NOT NULL,
@@ -60,12 +25,6 @@ CREATE TABLE `certificates` (
   `released_date` date DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `requests`
---
 
 CREATE TABLE `requests` (
   `id` int(11) NOT NULL,
@@ -80,10 +39,6 @@ CREATE TABLE `requests` (
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `requests`
---
-
 INSERT INTO `requests` (`id`, `reference_number`, `user_id`, `service_id`, `purpose`, `notes`, `status`, `payment_status`, `submitted_at`, `updated_at`) VALUES
 (1, 'BRGY-2025-0009', 2, 4, 'New sari-sari store', NULL, 'Completed', 'Paid', '2025-09-10 09:00:00', '2026-09-28 21:50:50'),
 (2, 'BRGY-2025-0010', 2, 3, 'Scholarship application', NULL, 'For Payment', 'Unpaid', '2025-09-15 09:00:00', '2026-09-28 21:50:50'),
@@ -93,12 +48,6 @@ INSERT INTO `requests` (`id`, `reference_number`, `user_id`, `service_id`, `purp
 (6, 'BRGY-2026-FB7B51', 3, 1, 'asfgasfagf', NULL, 'Pending', 'Unpaid', '2026-09-28 23:12:47', '2026-09-28 23:12:47'),
 (7, 'BRGY-2026-44465E', 5, 2, 'fadff', NULL, 'Pending', 'Unpaid', '2026-09-28 23:31:16', '2026-09-28 23:31:16');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `request_documents`
---
-
 CREATE TABLE `request_documents` (
   `id` int(11) NOT NULL,
   `request_id` int(11) NOT NULL,
@@ -106,12 +55,6 @@ CREATE TABLE `request_documents` (
   `file_path` varchar(255) DEFAULT NULL,
   `uploaded_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `services`
---
 
 CREATE TABLE `services` (
   `id` int(11) NOT NULL,
@@ -126,10 +69,6 @@ CREATE TABLE `services` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `services`
---
-
 INSERT INTO `services` (`id`, `service_name`, `category`, `description`, `requirements`, `processing_days`, `fee`, `icon`, `status`, `created_at`) VALUES
 (1, 'Barangay Clearance', 'Certificates & Clearances', 'For employment, business, travel, and other purposes.', 'Valid ID, proof of residency', 1, 50.00, 'file', 'active', '2026-09-28 21:50:50'),
 (2, 'Certificate of Residency', 'Certificates & Clearances', 'Proof of residency within the barangay.', 'Valid ID', 1, 30.00, 'user', 'active', '2026-09-28 21:50:50'),
@@ -143,12 +82,6 @@ INSERT INTO `services` (`id`, `service_name`, `category`, `description`, `requir
 (10, 'Certificate of Indigency', 'Certificates & Clearances', 'Certificate issued to qualified residents for various assistance and legal purposes.', 'Valid ID', 1, 0.00, 'file', 'active', '2026-09-29 01:30:19'),
 (11, 'Certificate of Residency', 'Certificates & Clearances', 'Certificate proving that the resident is currently residing within the barangay.', 'Valid ID', 1, 50.00, 'file', 'active', '2026-09-29 01:30:19');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `full_name` varchar(120) NOT NULL,
@@ -161,10 +94,6 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `users`
---
-
 INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `phone`, `address`, `role`, `status`, `created_at`) VALUES
 (1, 'Barangay Admin', 'admin@barangayhub.test', 'admin123', '09170000000', 'Barangay Hall', 'admin', 'active', '2026-09-28 21:50:50'),
 (2, 'Juan Dela Cruz', 'juan@barangayhub.test', '$2y$10$59VOPxVZSfJwlU9HGIqzFu5Wf.I/SaSfmhLxj88mdfgNH3/aWfoE2', '09171234567', '123 Rizal St., Barangay Centro', 'resident', 'active', '2026-09-28 21:50:50'),
@@ -173,26 +102,13 @@ INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `phone`, `address`,
 (5, 'kenyu', 'ken@gmail.com', '$2y$10$iq278XjIWsC75IlI8g7X9Op2EnVViebwdbs8K3Eu04xaItVcAJd9K', NULL, NULL, '', 'active', '2026-09-28 23:30:50'),
 (6, 'admin', 'john@gmail.com', '$2y$10$toWrDuVUQDaefWbYHJJQL.a2o0VE5k.7HatDN2K3XB6U8o12.VGJC', NULL, NULL, 'admin', 'active', '2026-09-28 23:57:05');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `announcements`
---
 ALTER TABLE `announcements`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `certificates`
---
 ALTER TABLE `certificates`
   ADD PRIMARY KEY (`id`),
   ADD KEY `request_id` (`request_id`);
 
---
--- Indexes for table `requests`
---
 ALTER TABLE `requests`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `reference_number` (`reference_number`),
@@ -200,90 +116,42 @@ ALTER TABLE `requests`
   ADD KEY `status` (`status`),
   ADD KEY `service_id` (`service_id`);
 
---
--- Indexes for table `request_documents`
---
 ALTER TABLE `request_documents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `request_id` (`request_id`);
 
---
--- Indexes for table `services`
---
 ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `users`
---
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `announcements`
---
 ALTER TABLE `announcements`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT for table `certificates`
---
 ALTER TABLE `certificates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `requests`
---
 ALTER TABLE `requests`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- AUTO_INCREMENT for table `request_documents`
---
 ALTER TABLE `request_documents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `services`
---
 ALTER TABLE `services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
---
--- AUTO_INCREMENT for table `users`
---
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `certificates`
---
 ALTER TABLE `certificates`
   ADD CONSTRAINT `certificates_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`id`) ON DELETE CASCADE;
 
---
--- Constraints for table `requests`
---
 ALTER TABLE `requests`
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`);
 
---
--- Constraints for table `request_documents`
---
 ALTER TABLE `request_documents`
   ADD CONSTRAINT `request_documents_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`id`) ON DELETE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
